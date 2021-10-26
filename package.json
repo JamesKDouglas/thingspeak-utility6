@@ -1,6 +1,6 @@
 {
   "name": "thingspeak-utility6",
-  "homepage": "http://JamesKDouglas.github.io/thingspeak-utility6"
+  "homepage": "http://JamesKDouglas.github.io/thingspeak-utility6",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
