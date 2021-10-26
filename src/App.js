@@ -14,6 +14,8 @@ class App extends Component {
     downloadURL: '',
   }
 
+
+
   buildURL = () => {
     let channel = this.state.channel;
     let readAPI = this.state.readAPI;
@@ -41,10 +43,17 @@ class App extends Component {
 
   
   render () {
+    const style_input = {
+      display: 'block',
+      paddingTop: 0,
+      textAlign: 'left',
+      pointerEvents: 'auto',
+    };
+
       return (
       <div className="App">
         <Form>
-            <Form.Group controlId = "channel">
+            <Form.Group controlId = "channel" style = {style_input} >
                 <Form.Label>Channel</Form.Label>
                 <Form.Control type = "text" 
                 defaultValue = {this.state.channel}
@@ -53,7 +62,7 @@ class App extends Component {
                 onChange = {this.handleInputChange}
                 />
             </Form.Group>
-            <Form.Group controlId = "readAPI">
+            <Form.Group controlId = "readAPI" style = {style_input}>
                 <Form.Label>readAPI</Form.Label>
                 <Form.Control type = "text" 
                 defaultValue = {this.state.readAPI}
@@ -62,7 +71,7 @@ class App extends Component {
                 onChange = {this.handleInputChange}
                 />
             </Form.Group>
-            <Form.Group controlId = "numPoints">
+            <Form.Group controlId = "numPoints" style = {style_input}>
                 <Form.Label># of points to chart:</Form.Label>
                 <Form.Control type = "text" 
                 defaultValue = {this.state.numPoints}
@@ -71,14 +80,24 @@ class App extends Component {
                 onChange = {this.handleInputChange}
                 />
             </Form.Group>
-            <Form.Group controlId = "fieldID">
-                <Form.Label>Field ID (1- mass reading (g) 2- temperature corrected mass reading (g) 3- temperature (deg C) 4- battery voltage)</Form.Label>
+            <Form.Group controlId = "fieldID" style = {style_input}>
+                <Form.Label>Field ID </Form.Label>
                 <Form.Control type = "text" 
                 defaultValue = {this.state.fieldID}
                 name = "fieldID"
                 required
                 onChange = {this.handleInputChange}
                 />
+                <br/>
+                <br/>
+                Field ID numbers:
+                  <ol>
+                    <li>mass reading (g)</li>
+                    <li>corrected mass reading (g)</li>
+                    <li>temperature (deg C)</li>
+                    <li>battery voltage)</li>
+                  </ol>
+                
             </Form.Group>
         </Form>
 
