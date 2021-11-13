@@ -67,83 +67,120 @@ class App extends Component {
       return (
       <div className="App">
         <Form>
-            <Form.Group controlId = "channel" style = {style_input} >
-                <Form.Label>Channel </Form.Label>
+
+            
+            
+            
+            
+            
+            
+
+        <table>
+  
+            <tr>
+              <td>
+                <Form.Group controlId = "channel" style = {style_input} >
+                <Form.Label>Channel </Form.Label><br/>
                 <Form.Control type = "text" 
-                defaultValue = {this.state.channel}
-                name = "channel"
-                required
-                onChange = {this.handleInputChange}
-                />
-            </Form.Group>
-            <Form.Group controlId = "readAPI" style = {style_input}>
-                <Form.Label>readAPI </Form.Label>
+                  defaultValue = {this.state.channel}
+                  name = "channel"
+                  required
+                  onChange = {this.handleInputChange}
+                  />
+                </Form.Group>
+              </td>
+              <td>
+                <Form.Group controlId = "readAPI" style = {style_input}>
+                <Form.Label>readAPI </Form.Label><br/>
                 <Form.Control type = "text" 
-                defaultValue = {this.state.readAPI}
-                name = "readAPI"
-                required
-                onChange = {this.handleInputChange}
-                />
-            </Form.Group>
-            <Form.Group controlId = "numPoints" style = {style_input}>
-                <Form.Label># of points to chart </Form.Label>
+                  defaultValue = {this.state.readAPI}
+                  name = "readAPI"
+                  required
+                  onChange = {this.handleInputChange}
+                  />
+                </Form.Group> 
+            </td>
+            </tr>
+            <tr>
+              <td>
+                <Form.Group controlId = "numPoints" style = {style_input}>
+                <Form.Label># of points to chart </Form.Label><br/>
                 <Form.Control type = "text" 
-                defaultValue = {this.state.numPoints}
-                name = "numPoints"
-                required
-                onChange = {this.handleInputChange}
-                />
-            </Form.Group>
-            <Form.Group controlId = "fieldID" style = {style_input}>
-                <Form.Label>Field ID </Form.Label>
+                  defaultValue = {this.state.numPoints}
+                  name = "numPoints"
+                  required
+                  onChange = {this.handleInputChange}
+                  />
+                </Form.Group></td>
+              <td>
+                <Form.Group controlId = "fieldID" style = {style_input}>
+                <Form.Label>Field ID </Form.Label><br/>
                 <Form.Control type = "text" 
                 defaultValue = {this.state.fieldID}
                 name = "fieldID"
                 required
                 onChange = {this.handleInputChange}
                 />
-            <Form.Group controlId = "startDate" style = {style_input}>
-                <Form.Label>Data start date (YYYY-MM-DD) </Form.Label>
+                </Form.Group>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Form.Group controlId = "startDate" style = {style_input}>
+                <Form.Label>Start date (YYYY-MM-DD) </Form.Label><br/>
                 <Form.Control type = "text" 
-                defaultValue = {this.state.startDate}
-                name = "startDate"
-                required
-                onChange = {this.handleInputChange}
-                />
-            </Form.Group>
-            <Form.Group controlId = "endDate" style = {style_input}>
-                <Form.Label>Data end date (YYYY-MM-DD) </Form.Label>
+                  defaultValue = {this.state.startDate}
+                  name = "startDate"
+                  required
+                  onChange = {this.handleInputChange}
+                  />
+                </Form.Group>
+              </td>
+              <td>
+                <Form.Group controlId = "endDate" style = {style_input}>
+                <Form.Label>End date (YYYY-MM-DD) </Form.Label><br/>
                 <Form.Control type = "text" 
-                defaultValue = {this.state.endDate}
-                name = "endDate"
-                required
-                onChange = {this.handleInputChange}
-                />
-            </Form.Group>
-            <Form.Group controlId = "yaxismax" style = {style_input}>
-                <Form.Label>Y axis max </Form.Label>
+                  defaultValue = {this.state.endDate}
+                  name = "endDate"
+                  required
+                  onChange = {this.handleInputChange}
+                  />
+                </Form.Group>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Form.Group controlId = "yaxismax" style = {style_input}>
+                <Form.Label>Y axis max </Form.Label><br/>
                 <Form.Control type = "text" 
-                defaultValue = {this.state.yaxismax}
-                name = "yaxismax"
-                required
-                onChange = {this.handleInputChange}
-                />
-            </Form.Group>
-                <br/>
-                "Y axis max" sets the magnitude of the y axis.
-                <br/>
-                Field ID numbers:
-                  <ol>
-                    <li>mass reading (g)</li>
-                    <li>mass reading with temperature noise minimized (g)</li>
-                    <li>temperature (deg C)</li>
-                    <li>battery voltage)</li>
-                  </ol>
-                
-            </Form.Group>
+                  defaultValue = {this.state.yaxismax}
+                  name = "yaxismax"
+                  required
+                  onChange = {this.handleInputChange}
+                  />
+                </Form.Group>
+              </td>
+              <td></td>
+            </tr>
+        </table>
+
         </Form>
 
-        <Button variant = "priamry" onClick = {this.buildURL}>Chart</Button>
+      <div align = "left">
+      <br/>
+      "Y axis max" sets the magnitude of the y axis.
+      <br/>
+      <br/>
+      Field ID numbers:
+      <ol align = "left">
+        <li>mass reading (g)</li>
+        <li>mass reading with temperature noise minimized (g)</li>
+        <li>temperature (deg C)</li>
+        <li>battery voltage)</li>
+      </ol>
+      </div>
+
+        <Button variant = "primary" onClick = {this.buildURL}>Chart</Button>
         
         <Iframe 
           url = {this.state.url}
