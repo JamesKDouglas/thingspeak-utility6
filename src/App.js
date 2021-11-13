@@ -4,7 +4,7 @@ import Iframe from 'react-iframe';
 import React, { Component } from 'react';
 
 class App extends Component {
- 
+
   state = {
     channel: '',
     readAPI: '',
@@ -32,7 +32,7 @@ class App extends Component {
 
     //note that all fields get downloaded, not just one chart. Cool.
     let downloadURL = 'https://api.thingspeak.com/channels/' + channel + '/feeds.csv?api_key=' + readAPI + '&results=' + numPoints;
-    
+
     if (startDate && endDate) {
       url = url + '&start=' + startDate + '%20' + '00:00:00' + '&end=' + endDate + '%20' + '00:00:00' + '&dynamic=false';
       downloadURL = downloadURL + '&start=' + startDate + '%20' + '00:00:00' + '&end=' + endDate + '%20' + '00:00:00';
@@ -55,7 +55,7 @@ class App extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-  
+
   render () {
     const style_input = {
       display: 'block',
@@ -67,112 +67,84 @@ class App extends Component {
       return (
       <div className="App">
         <Form>
-        <table>
-            <tr>
-              <td>
-                <Form.Group controlId = "channel" style = {style_input} >
-                <Form.Label>Channel </Form.Label><br/>
+            <Form.Group controlId = "channel" style = {style_input} >
+                <Form.Label>Channel </Form.Label>
                 <Form.Control type = "text" 
-                  defaultValue = {this.state.channel}
-                  name = "channel"
-                  required
-                  onChange = {this.handleInputChange}
-                  />
-                </Form.Group>
-              </td>
-              <td>
-                <Form.Group controlId = "readAPI" style = {style_input}>
-                <Form.Label>readAPI </Form.Label><br/>
+                defaultValue = {this.state.channel}
+                name = "channel"
+                required
+                onChange = {this.handleInputChange}
+                />
+            </Form.Group>
+            <Form.Group controlId = "readAPI" style = {style_input}>
+                <Form.Label>readAPI </Form.Label>
                 <Form.Control type = "text" 
-                  defaultValue = {this.state.readAPI}
-                  name = "readAPI"
-                  required
-                  onChange = {this.handleInputChange}
-                  />
-                </Form.Group> 
-            </td>
-            </tr>
-            <tr>
-              <td>
-                <Form.Group controlId = "numPoints" style = {style_input}>
-                <Form.Label># of points to chart </Form.Label><br/>
+                defaultValue = {this.state.readAPI}
+                name = "readAPI"
+                required
+                onChange = {this.handleInputChange}
+                />
+            </Form.Group>
+            <Form.Group controlId = "numPoints" style = {style_input}>
+                <Form.Label># of points to chart </Form.Label>
                 <Form.Control type = "text" 
-                  defaultValue = {this.state.numPoints}
-                  name = "numPoints"
-                  required
-                  onChange = {this.handleInputChange}
-                  />
-                </Form.Group></td>
-              <td>
-                <Form.Group controlId = "fieldID" style = {style_input}>
-                <Form.Label>Field ID </Form.Label><br/>
+                defaultValue = {this.state.numPoints}
+                name = "numPoints"
+                required
+                onChange = {this.handleInputChange}
+                />
+            </Form.Group>
+            <Form.Group controlId = "fieldID" style = {style_input}>
+                <Form.Label>Field ID </Form.Label>
                 <Form.Control type = "text" 
                 defaultValue = {this.state.fieldID}
                 name = "fieldID"
                 required
                 onChange = {this.handleInputChange}
                 />
-                </Form.Group>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Form.Group controlId = "startDate" style = {style_input}>
-                <Form.Label>Start date (YYYY-MM-DD) </Form.Label><br/>
+            <Form.Group controlId = "startDate" style = {style_input}>
+                <Form.Label>Data start date (YYYY-MM-DD) </Form.Label>
                 <Form.Control type = "text" 
-                  defaultValue = {this.state.startDate}
-                  name = "startDate"
-                  required
-                  onChange = {this.handleInputChange}
-                  />
-                </Form.Group>
-              </td>
-              <td>
-                <Form.Group controlId = "endDate" style = {style_input}>
-                <Form.Label>End date (YYYY-MM-DD) </Form.Label><br/>
+                defaultValue = {this.state.startDate}
+                name = "startDate"
+                required
+                onChange = {this.handleInputChange}
+                />
+            </Form.Group>
+            <Form.Group controlId = "endDate" style = {style_input}>
+                <Form.Label>Data end date (YYYY-MM-DD) </Form.Label>
                 <Form.Control type = "text" 
-                  defaultValue = {this.state.endDate}
-                  name = "endDate"
-                  required
-                  onChange = {this.handleInputChange}
-                  />
-                </Form.Group>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Form.Group controlId = "yaxismax" style = {style_input}>
-                <Form.Label>Y axis max </Form.Label><br/>
+                defaultValue = {this.state.endDate}
+                name = "endDate"
+                required
+                onChange = {this.handleInputChange}
+                />
+            </Form.Group>
+            <Form.Group controlId = "yaxismax" style = {style_input}>
+                <Form.Label>Y axis max </Form.Label>
                 <Form.Control type = "text" 
-                  defaultValue = {this.state.yaxismax}
-                  name = "yaxismax"
-                  required
-                  onChange = {this.handleInputChange}
-                  />
-                </Form.Group>
-              </td>
-              <td></td>
-            </tr>
-        </table>
+                defaultValue = {this.state.yaxismax}
+                name = "yaxismax"
+                required
+                onChange = {this.handleInputChange}
+                />
+            </Form.Group>
+                <br/>
+                "Y axis max" sets the magnitude of the y axis.
+                <br/>
+                Field ID numbers:
+                  <ol>
+                    <li>mass reading (g)</li>
+                    <li>mass reading with temperature noise minimized (g)</li>
+                    <li>temperature (deg C)</li>
+                    <li>battery voltage)</li>
+                  </ol>
 
+            </Form.Group>
         </Form>
 
-      <div align = "left">
-      <br/>
-      "Y axis max" sets the magnitude of the y axis.
-      <br/>
-      <br/>
-      Field ID numbers:
-      <ol align = "left">
-        <li>mass reading (g)</li>
-        <li>mass reading with temperature noise minimized (g)</li>
-        <li>temperature (deg C)</li>
-        <li>battery voltage)</li>
-      </ol>
-      </div>
+        <Button variant = "priamry" onClick = {this.buildURL}>Chart</Button>
 
-        <Button variant = "primary" onClick = {this.buildURL}>Chart</Button>
-        
         <Iframe 
           url = {this.state.url}
           width = "450px"
