@@ -12,6 +12,9 @@ class App extends Component {
     fieldID: '',
     url: '',
     downloadURL: '',
+    startDate: '',
+    endDate: '',
+    yaxismax: '',
   }
 
 
@@ -21,13 +24,24 @@ class App extends Component {
     let readAPI = this.state.readAPI;
     let numPoints = this.state.numPoints;
     let fieldID = this.state.fieldID;
+    let startDate = this.state.startDate;
+    let endDate = this.state.endDate;
+    let yaxismax = this.state.yaxismax;
 
     let url = 'https://thingspeak.com/channels/' + channel + '/charts/' + fieldID + '?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=' + numPoints + '&type=line&api_key=' + readAPI;
-    
 
     //note that all fields get downloaded, not just one chart. Cool.
     let downloadURL = 'https://api.thingspeak.com/channels/' + channel + '/feeds.csv?api_key=' + readAPI + '&results=' + numPoints;
     
+    if (startDate && endDate) {
+      url = url + '&start=' + startDate + '%20' + '00:00:00' + '&end=' + endDate + '%20' + '00:00:00' + '&dynamic=false';
+      downloadURL = downloadURL + '&start=' + startDate + '%20' + '00:00:00' + '&end=' + endDate + '%20' + '00:00:00';
+    }
+
+    if (yaxismax) {
+      url = url + '&yaxismax=' + yaxismax;
+    }
+
     console.log('The chart URL is:' + url);
     this.setState({url: url});
 
@@ -54,7 +68,7 @@ class App extends Component {
       <div className="App">
         <Form>
             <Form.Group controlId = "channel" style = {style_input} >
-                <Form.Label>Channel</Form.Label>
+                <Form.Label>Channel </Form.Label>
                 <Form.Control type = "text" 
                 defaultValue = {this.state.channel}
                 name = "channel"
@@ -63,7 +77,7 @@ class App extends Component {
                 />
             </Form.Group>
             <Form.Group controlId = "readAPI" style = {style_input}>
-                <Form.Label>readAPI</Form.Label>
+                <Form.Label>readAPI </Form.Label>
                 <Form.Control type = "text" 
                 defaultValue = {this.state.readAPI}
                 name = "readAPI"
@@ -72,7 +86,7 @@ class App extends Component {
                 />
             </Form.Group>
             <Form.Group controlId = "numPoints" style = {style_input}>
-                <Form.Label># of points to chart:</Form.Label>
+                <Form.Label># of points to chart </Form.Label>
                 <Form.Control type = "text" 
                 defaultValue = {this.state.numPoints}
                 name = "numPoints"
@@ -88,7 +102,35 @@ class App extends Component {
                 required
                 onChange = {this.handleInputChange}
                 />
+            <Form.Group controlId = "startDate" style = {style_input}>
+                <Form.Label>Data start date (YYYY-MM-DD) </Form.Label>
+                <Form.Control type = "text" 
+                defaultValue = {this.state.startDate}
+                name = "startDate"
+                required
+                onChange = {this.handleInputChange}
+                />
+            </Form.Group>
+            <Form.Group controlId = "endDate" style = {style_input}>
+                <Form.Label>Data end date (YYYY-MM-DD) </Form.Label>
+                <Form.Control type = "text" 
+                defaultValue = {this.state.endDate}
+                name = "endDate"
+                required
+                onChange = {this.handleInputChange}
+                />
+            </Form.Group>
+            <Form.Group controlId = "yaxismax" style = {style_input}>
+                <Form.Label>Y axis max </Form.Label>
+                <Form.Control type = "text" 
+                defaultValue = {this.state.yaxismax}
+                name = "yaxismax"
+                required
+                onChange = {this.handleInputChange}
+                />
+            </Form.Group>
                 <br/>
+                "Y axis max" sets the magnitude of the y axis. This is helpful to chart data.
                 <br/>
                 Field ID numbers:
                   <ol>
