@@ -67,16 +67,7 @@ class App extends Component {
       return (
       <div className="App">
         <Form>
-
-            
-            
-            
-            
-            
-            
-
         <table>
-  
             <tr>
               <td>
                 <Form.Group controlId = "channel" style = {style_input} >
