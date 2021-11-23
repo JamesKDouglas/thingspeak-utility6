@@ -137,7 +137,7 @@ class App extends Component {
                     <li>mass reading (g)</li>
                     <li>mass reading with temperature noise minimized (g)</li>
                     <li>temperature (deg C)</li>
-                    <li>battery voltage)</li>
+                    <li>battery voltage</li>
                   </ol>
                 
             </Form.Group>
