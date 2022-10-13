@@ -15,6 +15,8 @@ class App extends Component {
     startDate: '',
     endDate: '',
     yaxismax: '',
+    // downsample: '',
+    filterLower: '',
   }
 
 
@@ -27,11 +29,14 @@ class App extends Component {
     let startDate = this.state.startDate;
     let endDate = this.state.endDate;
     let yaxismax = this.state.yaxismax;
+    // let downsample = this.state.downsample;
+    let filterLower = this.state.filterLower;
 
     let url = 'https://thingspeak.com/channels/' + channel + '/charts/' + fieldID + '?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=' + numPoints + '&type=line&api_key=' + readAPI;
 
     //note that all fields get downloaded, not just one chart. Cool.
     let downloadURL = 'https://api.thingspeak.com/channels/' + channel + '/feeds.csv?api_key=' + readAPI + '&results=' + numPoints;
+    // + '&min=' + filterLower;
     
     if (startDate && endDate) {
       url = url + '&start=' + startDate + '%20' + '00:00:00' + '&end=' + endDate + '%20' + '00:00:00' + '&dynamic=false';
@@ -40,6 +45,10 @@ class App extends Component {
 
     if (yaxismax) {
       url = url + '&yaxismax=' + yaxismax;
+    }
+
+    if (filterLower) {
+      url = url + '&min=' + filterLower;
     }
 
     console.log('The chart URL is:' + url);
@@ -151,7 +160,17 @@ class App extends Component {
                   />
                 </Form.Group>
               </td>
-              <td></td>
+              <td>
+                <Form.Group controlId = "filterLower" style = {style_input}>
+                <Form.Label>Filter out values below: </Form.Label><br/>
+                <Form.Control type = "text" 
+                  defaultValue = {this.state.filterLower}
+                  name = "filterLower"
+                  required
+                  onChange = {this.handleInputChange}
+                  />
+                </Form.Group>
+              </td>
             </tr>
         </table>
 
