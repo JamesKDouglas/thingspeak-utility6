@@ -29,7 +29,7 @@ class App extends Component {
     let startDate = this.state.startDate;
     let endDate = this.state.endDate;
     let yaxismax = this.state.yaxismax;
-    // let downsample = this.state.downsample;
+    let downsample = this.state.downsample;
     let filterLower = this.state.filterLower;
 
     let url = 'https://thingspeak.com/channels/' + channel + '/charts/' + fieldID + '?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=' + numPoints + '&type=line&api_key=' + readAPI;
@@ -45,10 +45,17 @@ class App extends Component {
 
     if (yaxismax) {
       url = url + '&yaxismax=' + yaxismax;
+      downloadURL = downloadURL + '&yaxismax=' + yaxismax;
     }
 
     if (filterLower) {
       url = url + '&min=' + filterLower;
+      downloadURL = downloadURL + '&min=' + filterLower;
+    }
+
+    if (downsample) {
+      url = url + '&average=' + downsample;
+      downloadURL = downloadURL + '&average=' + downsample;
     }
 
     console.log('The chart URL is:' + url);
@@ -170,6 +177,22 @@ class App extends Component {
                   onChange = {this.handleInputChange}
                   />
                 </Form.Group>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Form.Group controlId = "downsample" style = {style_input}>
+                <Form.Label>average over this # minutes: </Form.Label><br/>
+                <Form.Control type = "text" 
+                  defaultValue = {this.state.downsample}
+                  name = "downsample"
+                  required
+                  onChange = {this.handleInputChange}
+                  />
+                </Form.Group>
+              </td>
+              <td>
+
               </td>
             </tr>
         </table>
